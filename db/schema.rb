@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170507225202) do
+ActiveRecord::Schema.define(version: 20170507233218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,7 +53,21 @@ ActiveRecord::Schema.define(version: 20170507225202) do
     t.index ["agency_id"], name: "index_realtors_on_agency_id", using: :btree
   end
 
+  create_table "showings", force: :cascade do |t|
+    t.integer  "realtor_id"
+    t.integer  "property_id"
+    t.integer  "customer_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["customer_id"], name: "index_showings_on_customer_id", using: :btree
+    t.index ["property_id"], name: "index_showings_on_property_id", using: :btree
+    t.index ["realtor_id"], name: "index_showings_on_realtor_id", using: :btree
+  end
+
   add_foreign_key "customers", "realtors"
   add_foreign_key "properties", "realtors"
   add_foreign_key "realtors", "agencies"
+  add_foreign_key "showings", "customers"
+  add_foreign_key "showings", "properties"
+  add_foreign_key "showings", "realtors"
 end

@@ -1,0 +1,28 @@
+<%= form_for @showing do |f| %>
+  <table class='table'>
+    <tr>
+      <td>
+        <div class="form-group col-md-4">
+          <%= f.label 'Customer: ' %>
+          <%= f.select :customer_id, Customer.all.collect { |p| [ p.name, p.id ] }, class: 'form-control col-md-4' %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="form-group col-md-4">
+          <%= f.label 'Property address: ' %>
+          <%= f.select :property_id, Property.all.collect { |p|
+            [p.street_address, p.id]}, class: 'form-control co-md-4' %>
+          </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="form-group">
+          <%= f.submit 'log showing', class: 'btn-primary' %>
+        </div>
+      </td>
+    </tr>
+  </table>
+<% end %>

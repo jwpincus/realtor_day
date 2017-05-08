@@ -1,4 +1,9 @@
 FactoryGirl.define do
+  factory :showing do
+    realtor nil
+    property nil
+    customer nil
+  end
   factory :property do
     street_address "123 anywhere"
     city "Bellingham"
